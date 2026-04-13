@@ -96,14 +96,20 @@ STEPS:
   2. Open the solution
      Open JobTracker.slnx in Visual Studio
 
-  3. Create the database
-     Open Tools > NuGet Package Manager > Package Manager Console
-     In the Package Manager Console window, find the "Default project" 
-     dropdown in the top right and set it to:
+3. Create the database
 
-     Update-Database -Project JobTracker.Data -StartupProject JobTracker.Web
+   Open Tools > NuGet Package Manager > Package Manager Console
 
-     This creates the database and loads sample data automatically.
+   In the Package Manager Console window, find the "Default project" 
+   dropdown in the top right and set it to:
+
+      JobTracker.Data
+
+   Then run this command:
+
+   Update-Database -Project JobTracker.Data -StartupProject JobTracker.Web
+
+   This creates the database and loads sample data automatically.
 
   4. Run the application
      Set JobTracker.Web as the startup project
