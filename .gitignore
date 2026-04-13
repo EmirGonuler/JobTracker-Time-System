@@ -1,0 +1,20 @@
+# Visual Studio temp files
+.vs/
+*.user
+*.suo
+*.rsuser
+
+# Build output — auto generated, not needed in Git
+**/bin/
+**/obj/
+
+# Local database files
+*.mdf
+*.ldf
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Launch settings contain local machine ports
+**/Properties/launchSettings.json

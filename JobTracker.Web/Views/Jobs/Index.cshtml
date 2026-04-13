@@ -1,0 +1,114 @@
+﻿@* 
+    @model tells this view what type of data it will receive from the controller.
+    Here we receive a List of Job objects from JobsController.Index()
+*@
+@model List<JobTracker.Core.Models.Job>
+
+@{
+    ViewData["Title"] = "All Jobs";
+}
+
+<div class="container mt-4">
+
+    @* ── Page heading and "Create New Job" button side by side ── *@
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>All Jobs</h2>
+        <a asp-controller="Jobs" asp-action="Create" class="btn btn-primary">
+            + Create New Job
+        </a>
+    </div>
+
+    @* ── Success message (green) — shown after creating or editing a job ── *@
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* ── Error message (red) — shown if something went wrong ── *@
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* ── Jobs table ── *@
+    @if (!Model.Any())
+    {
+        @* Show a friendly message if there are no jobs yet *@
+        <div class="alert alert-info">
+            No jobs found. Click "Create New Job" to add one.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Job No</th>
+                    <th>Job Type</th>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*
+                    Loop through every job and create one table row per job.
+                    "@job" is each individual job as we loop through the list.
+                *@
+                @foreach (var job in Model)
+                {
+                    <tr>
+                        <td><strong>@job.JobNo</strong></td>
+                        <td>
+                            @*
+                                Show a coloured badge depending on job type.
+                                This makes it easy to see at a glance what type each job is.
+                            *@
+                            @if (job.JobType == JobTracker.Core.Enums.JobType.Repair)
+                            {
+                                <span class="badge bg-danger">Repair</span>
+                            }
+                            else if (job.JobType == JobTracker.Core.Enums.JobType.Support)
+                            {
+                                <span class="badge bg-primary">Support</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Warranty</span>
+                            }
+                        </td>
+                        <td>@job.Date.ToString("dd MMM yyyy")</td>
+                        <td>@job.Client?.CompanyName</td>
+                        <td>@job.Client?.ContactName</td>
+                        <td>
+                            @*
+                                asp-route-id passes the job's ID to the controller action.
+                                Example: clicking Details generates the URL /Jobs/Details/3
+                            *@
+                            <a asp-controller="Jobs"
+                                   asp-action="Details"
+                                   asp-route-id="@job.Id"
+                                   class="btn btn-sm btn-info text-white me-1">
+                                Details
+                            </a>
+                            <a asp-controller="Jobs"
+                                   asp-action="Edit"
+                                   asp-route-id="@job.Id"
+                                   class="btn btn-sm btn-warning me-1">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

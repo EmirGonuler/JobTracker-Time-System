@@ -1,0 +1,126 @@
+﻿@*
+    This view receives a single Job object from JobsController.Edit()
+*@
+@model JobTracker.Core.Models.Job
+
+@{
+    ViewData["Title"] = $"Edit Job {Model.JobNo}";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">Edit Job — @Model.JobNo</h4>
+                </div>
+
+                <div class="card-body">
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
+
+                    @*
+                        Note: asp-route-id passes the job ID in the URL when submitting.
+                        This tells the controller WHICH job to update.
+                    *@
+                    <form asp-controller="Jobs"
+                          asp-action="Edit"
+                          asp-route-id="@Model.Id"
+                          method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        @* ── Job No (read only — cannot be changed) ── *@
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Job No</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="@Model.JobNo"
+                                   disabled />
+                            <small class="text-muted">
+                                Job number cannot be changed after creation.
+                            </small>
+                        </div>
+
+                        @* ── Job Type dropdown ── *@
+                        <div class="mb-3">
+                            <label for="jobType" class="form-label fw-bold">Job Type</label>
+                            <select name="jobType" id="jobType" class="form-select" required>
+                                @foreach (var type in Enum.GetValues<JobTracker.Core.Enums.JobType>())
+                                {
+                                    @*
+                                        We check if this option matches the current job type.
+                                        If it does, we add "selected" so it appears pre-selected.
+                                    *@
+                                    if (type == Model.JobType)
+                                    {
+                                        <option value="@type" selected>@type</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@type">@type</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        @* ── Date picker pre-filled with existing date ── *@
+                        <div class="mb-3">
+                            <label for="date" class="form-label fw-bold">Date</label>
+                            <input type="date"
+                                   name="date"
+                                   id="date"
+                                   class="form-control"
+                                   value="@Model.Date.ToString("yyyy-MM-dd")"
+                                   required />
+                        </div>
+
+                        @* ── Client dropdown pre-selected with existing client ── *@
+                        <div class="mb-3">
+                            <label for="clientId" class="form-label fw-bold">Client</label>
+                            <select name="clientId"
+                                    id="clientId"
+                                    class="form-select"
+                                    asp-items="ViewBag.ClientId"
+                                    required>
+                                <option value="">-- Select Client --</option>
+                            </select>
+                        </div>
+
+                        @* ── Buttons ── *@
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-warning">
+                                Save Changes
+                            </button>
+                            <a asp-controller="Jobs"
+                                   asp-action="Index"
+                                   class="btn btn-secondary">
+                                Cancel
+                            </a>
+                            @*
+                                Delete is separated visually with ms-auto to push it to the right.
+                                This prevents accidental clicks next to the Save button.
+                            *@
+                            <a asp-controller="Jobs"
+                                   asp-action="Delete"
+                                   asp-route-id="@Model.Id"
+                                   class="btn btn-danger ms-auto">
+                                🗑️ Delete Job
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
