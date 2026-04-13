@@ -6,29 +6,23 @@
 SCREENSHOTS
 -----------
 
-All Jobs Overview
------------------
-![All Jobs](docs/Screenshot_All_Jobs_Overview.png)
+### All Jobs Overview
+<img src="docs/Screenshot_All_Jobs_Overview.png" width="700"/>
 
-Create New Job
---------------
-![Create Job](docs/Screenshot_Create_Jobs.png)
+### Create New Job
+<img src="docs/Screenshot_Create_Jobs.png" width="700"/>
 
-Edit Job
---------
-![Edit Job](docs/Screenshot_Edit_Jobs.png)
+### Edit Job
+<img src="docs/Screenshot_Edit_Jobs.png" width="700"/>
 
-Job Details and Time Cards
---------------------------
-![Job Details](docs/Screenshot_Job_Details.png)
+### Job Details and Time Cards
+<img src="docs/Screenshot_Job_Details.png" width="700"/>
 
-Clock In Hours
---------------
-![Clock In](docs/Screenshot_Log_Hours.png)
+### Clock In Hours
+<img src="docs/Screenshot_Log_Hours.png" width="700"/>
 
-Solution Architecture
----------------------
-![Architecture](docs/Screenshot_Solution_Architecture.png)
+### Diagram Architecture
+<img src="docs/Screenshot_Solution_Architecture.png" width="700"/>
 
 
 ABOUT THIS PROJECT
