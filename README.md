@@ -1,7 +1,5 @@
-================================================================
-  TIME SYSTEM — Job and Time Card Tracker
-  Built with .NET 10, ASP.NET Core MVC, Entity Framework Core
-================================================================
+TIME SYSTEM — Job and Time Card Tracker
+Built with .NET 10, ASP.NET Core MVC, Entity Framework Core
 
 SCREENSHOTS
 -----------
