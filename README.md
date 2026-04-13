@@ -94,7 +94,7 @@ STEPS:
      git clone https://github.com/EmirGonuler/JobTracker-Time-System.git
 
   2. Open the solution
-     Open JobTracker.slnx in Visual Studio 2022
+     Open JobTracker.slnx in Visual Studio
 
   3. Create the database
      Open Tools > NuGet Package Manager > Package Manager Console
