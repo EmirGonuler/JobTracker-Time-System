@@ -98,7 +98,8 @@ STEPS:
 
   3. Create the database
      Open Tools > NuGet Package Manager > Package Manager Console
-     Run this command:
+     In the Package Manager Console window, find the "Default project" 
+     dropdown in the top right and set it to:
 
      Update-Database -Project JobTracker.Data -StartupProject JobTracker.Web
 
