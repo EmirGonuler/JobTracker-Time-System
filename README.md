@@ -112,6 +112,7 @@ STEPS:
    This creates the database and loads sample data automatically.
 
   4. Run the application
+
      Set JobTracker.Web as the startup project
      Press F5
 
