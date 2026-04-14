@@ -84,7 +84,7 @@ HOW TO RUN THIS PROJECT
 -----------------------
 
 REQUIREMENTS:
-  - Visual Studio 2022
+  - Visual Studio 2026
   - .NET 10 SDK
   - SQL Server LocalDB (installs automatically with Visual Studio)
 
